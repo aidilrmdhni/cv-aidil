@@ -309,13 +309,6 @@
             color: var(--text-muted); font-family: 'Fira Code', monospace;
         }
 
-        /* Saat cetak PDF, tampilkan semua tab secara berurutan */
-        @media print {
-            .tab-nav-container, .action-buttons { display: none !important; }
-            .tab-content { display: block !important; margin-bottom: 30px; }
-            body { background: #ffffff; color: #000000; }
-            .skill-card, .timeline-item { border: 1px solid #ccc; page-break-inside: avoid; }
-        }
     </style>
 </head>
 <body>
@@ -341,7 +334,6 @@
             <div class="action-buttons">
                 <a href="https://wa.me/6285117211551" target="_blank" class="btn btn-wa">💬 Chat WhatsApp</a>
                 <a href="mailto:aidilakbarramadhani12@gmail.com" class="btn btn-email">📧 Kirim Email</a>
-                <button onclick="window.print()" class="btn btn-pdf">🖨️ Simpan PDF / Cetak</button>
             </div>
 
             <div class="contact-bar">
