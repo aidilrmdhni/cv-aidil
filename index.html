@@ -14,6 +14,7 @@
             --bg-main: #0a0f1d;
             --bg-card: #111827;
             --accent-cyan: #38bdf8;
+            --accent-blue: #0284c7;
             --accent-emerald: #10b981;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -146,64 +147,81 @@
         .contact-bar {
             display: flex; flex-wrap: wrap; justify-content: center;
             gap: 15px; font-size: 13px; color: var(--text-muted);
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
         .contact-bar span {
             background: var(--bg-card); padding: 6px 14px;
             border-radius: 6px; border: 1px solid var(--border-color);
         }
 
-        /* --- 3. INTERACTIVE TAB NAVIGATION (DASHBOARD STYLE) --- */
-        .tab-nav {
+        /* --- 3. DESAIN NAVIGASI TAB BARU (MODERN PILL STYLE) --- */
+        .tab-nav-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .tab-nav {
+            display: inline-flex;
+            gap: 8px;
             flex-wrap: wrap;
-            background: var(--bg-card);
+            justify-content: center;
+            background: #0d1424;
             padding: 8px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .tab-btn {
             background: transparent;
             color: var(--text-muted);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            border: 1px solid transparent;
+            padding: 12px 22px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: 600;
-            font-family: 'Fira Code', monospace;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .tab-btn:hover {
-            color: var(--accent-cyan);
-            background: rgba(255, 255, 255, 0.03);
+        .tab-btn:hover:not(.active) {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+            color: #ffffff;
+            font-weight: 700;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 20px -4px rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .tab-icon {
+            font-size: 16px;
         }
 
         /* --- 4. TAB CONTENTS (PANELS) --- */
         .tab-content {
-            display: none; /* Sembunyikan semua tab secara default */
-            animation: fadeIn 0.4s ease-in-out;
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .tab-content.active {
-            display: block; /* Hanya tampilkan tab yang aktif */
+            display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(15px); scale: 0.98; }
+            to { opacity: 1; transform: translateY(0); scale: 1; }
         }
 
         .section-title {
@@ -221,10 +239,9 @@
             content: "/>"; font-family: 'Fira Code', monospace; color: var(--accent-emerald);
         }
 
-        /* --- PERBAIKAN GRID AGAR TEKS TIDAK KELUAR GARIS --- */
+        /* --- GRID KEAHLIAN --- */
         .grid-skills {
             display: grid;
-            /* Grid sekarang lebih lebar (min 260px) sehingga teks panjang tidak menabrak batas */
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 15px;
         }
@@ -239,7 +256,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px; /* Jarak aman antara nama skill dan tulisan EXPERT */
+            gap: 15px;
             transition: all 0.3s ease;
         }
 
@@ -249,19 +266,11 @@
             box-shadow: 0 10px 20px -10px rgba(56, 189, 248, 0.3);
         }
 
-        .skill-name {
-            flex: 1; /* Mendorong label EXPERT ke kanan tanpa bertabrakan */
-            line-height: 1.3;
-        }
-
+        .skill-name { flex: 1; line-height: 1.3; }
         .skill-level {
-            font-family: 'Fira Code', monospace;
-            font-size: 11px;
-            color: var(--accent-emerald);
-            background: rgba(16, 185, 129, 0.1);
-            padding: 4px 8px;
-            border-radius: 4px;
-            white-space: nowrap; /* Mencegah kata EXPERT terpotong/turun baris */
+            font-family: 'Fira Code', monospace; font-size: 11px;
+            color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1);
+            padding: 4px 8px; border-radius: 4px; white-space: nowrap;
         }
 
         /* --- TIMELINE --- */
@@ -302,7 +311,7 @@
 
         /* Saat cetak PDF, tampilkan semua tab secara berurutan */
         @media print {
-            .tab-nav, .action-buttons { display: none !important; }
+            .tab-nav-container, .action-buttons { display: none !important; }
             .tab-content { display: block !important; margin-bottom: 30px; }
             body { background: #ffffff; color: #000000; }
             .skill-card, .timeline-item { border: 1px solid #ccc; page-break-inside: avoid; }
@@ -342,17 +351,27 @@
             </div>
         </header>
 
-        <!-- 3. MENU NAVIGASI TAB INTERAKTIF (PILIHAN) -->
-        <div class="tab-nav">
-            <button class="tab-btn active" onclick="openTab('profil')">// Profil</button>
-            <button class="tab-btn" onclick="openTab('keahlian')">// Keahlian</button>
-            <button class="tab-btn" onclick="openTab('pengalaman')">// Pengalaman</button>
-            <button class="tab-btn" onclick="openTab('pendidikan')">// Pendidikan</button>
+        <!-- 3. MENU NAVIGASI TAB BARU (PILL SHAPED + ICONS + GLOW) -->
+        <div class="tab-nav-container">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'profil')">
+                    <span class="tab-icon">👨‍💻</span> Profil
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'keahlian')">
+                    <span class="tab-icon">⚡</span> Keahlian
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'pengalaman')">
+                    <span class="tab-icon">💼</span> Pengalaman
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'pendidikan')">
+                    <span class="tab-icon">🎓</span> Pendidikan
+                </button>
+            </div>
         </div>
 
-        <!-- 4. PANEL KONTEN (MUNCUL SESUAI TAB YANG DIKLIK) -->
+        <!-- 4. PANEL KONTEN -->
         
-        <!-- PANEL PROFIL (Default Terbuka) -->
+        <!-- PANEL PROFIL -->
         <div id="profil" class="tab-content active">
             <div class="section-title">Executive Summary</div>
             <div class="timeline-item" style="border-left: 4px solid var(--accent-emerald); margin-bottom: 0;">
@@ -362,7 +381,7 @@
             </div>
         </div>
 
-        <!-- PANEL KEAHLIAN (Rapi & Tidak Keluar Garis) -->
+        <!-- PANEL KEAHLIAN -->
         <div id="keahlian" class="tab-content">
             <div class="section-title">Core Competencies & Tech Stack</div>
             <div class="grid-skills">
@@ -477,7 +496,7 @@
         </footer>
     </div>
 
-    <!-- 5. SCRIPT ANIMASI TERMINAL BOOT & SISTEM TAB -->
+    <!-- 5. SCRIPT ANIMASI -->
     <script>
         const textToType = [
             "> System.init()... OK",
@@ -515,24 +534,19 @@
         }
 
         // FUNGSI GANTI TAB KONTEN
-        function openTab(tabId) {
-            // Sembunyikan semua konten tab
+        function openTab(evt, tabId) {
             const contents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < contents.length; i++) {
                 contents[i].classList.remove("active");
             }
             
-            // Nonaktifkan warna aktif dari semua tombol tab
             const buttons = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("active");
             }
             
-            // Tampilkan tab yang dipilih
             document.getElementById(tabId).classList.add("active");
-            
-            // Nyalakan warna tombol yang sedang diklik
-            event.currentTarget.classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
 
         window.onload = () => {
