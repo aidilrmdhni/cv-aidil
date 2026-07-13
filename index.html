@@ -26,6 +26,11 @@
             box-sizing: border-box;
         }
 
+        /* FITUR 1: SMOOTH SCROLLING */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-main);
@@ -98,14 +103,45 @@
             50% { opacity: 0; }
         }
 
-        /* --- 2. STRUKTUR KONTEN UTAMA --- */
+        /* --- FITUR 2: STICKY GLASSMORPHISM NAVBAR --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 15, 29, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* --- STRUKTUR KONTEN UTAMA --- */
         #main-content {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 1s ease, transform 1s ease;
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px 80px;
+            padding: 20px 20px 80px;
         }
 
         #main-content.visible {
@@ -116,7 +152,7 @@
         /* --- HERO SECTION --- */
         .hero {
             text-align: center;
-            padding: 60px 0 40px;
+            padding: 50px 0 30px;
             position: relative;
         }
 
@@ -134,7 +170,65 @@
             font-size: 18px;
             color: var(--accent-cyan);
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* FITUR 3: INTERACTIVE ACTION BUTTONS */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-wa {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .btn-wa:hover {
+            background: var(--accent-emerald);
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-email {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+        .btn-email:hover {
+            background: var(--accent-cyan);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-pdf {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+        .btn-pdf:hover {
+            border-color: var(--text-main);
+            transform: translateY(-2px);
         }
 
         .contact-bar {
@@ -142,15 +236,15 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .contact-bar span {
             background: var(--bg-card);
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 6px 14px;
+            border-radius: 6px;
             border: 1px solid var(--border-color);
         }
 
@@ -158,13 +252,14 @@
         .section-title {
             font-size: 20px;
             font-weight: 700;
-            margin: 40px 0 20px;
+            margin: 50px 0 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             color: #ffffff;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
+            scroll-margin-top: 80px; /* Jarak aman agar judul tidak tertutup navbar saat discroll */
         }
 
         .section-title::before {
@@ -282,6 +377,21 @@
             color: var(--text-muted);
             font-family: 'Fira Code', monospace;
         }
+
+        /* Sembunyikan navbar dan tombol saat mode cetak PDF */
+        @media print {
+            .navbar, .action-buttons {
+                display: none !important;
+            }
+            body {
+                background: #ffffff;
+                color: #000000;
+            }
+            .skill-card, .timeline-item {
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -298,13 +408,33 @@
         </div>
     </div>
 
+    <!-- FITUR BARU: MENU NAVIGASI MELAYANG (STICKY NAVBAR) -->
+    <nav class="navbar" id="navbar" style="display: none;">
+        <a href="#profil" class="nav-link">// Profil</a>
+        <a href="#keahlian" class="nav-link">// Keahlian</a>
+        <a href="#pengalaman" class="nav-link">// Pengalaman</a>
+        <a href="#pendidikan" class="nav-link">// Pendidikan</a>
+    </nav>
+
     <!-- 2. KONTEN UTAMA CV -->
     <div id="main-content">
         <header class="hero">
-            <!-- Badge Verified Professional telah dihapus -->
             <h1>AIDIL AKBAR RAMADHANI</h1>
             <div class="subtitle">Supply Chain & Warehouse Team Leader</div>
             
+            <!-- FITUR BARU: TOMBOL AKSI INTERAKTIF (KLIK LANGSUNG) -->
+            <div class="action-buttons">
+                <a href="https://wa.me/6285117211551" target="_blank" class="btn btn-wa">
+                    💬 Chat WhatsApp
+                </a>
+                <a href="mailto:aidilakbarramadhani12@gmail.com" class="btn btn-email">
+                    📧 Kirim Email
+                </a>
+                <button onclick="window.print()" class="btn btn-pdf">
+                    🖨️ Simpan PDF / Cetak
+                </button>
+            </div>
+
             <div class="contact-bar">
                 <span>📍 Kota Tangerang, Banten</span>
                 <span>📱 0851-1721-1551</span>
@@ -313,7 +443,7 @@
         </header>
 
         <!-- PROFIL -->
-        <div class="section-title">Executive Summary</div>
+        <div class="section-title" id="profil">Executive Summary</div>
         <div class="timeline-item" style="border-left: 4px solid var(--accent-emerald);">
             <p style="color: var(--text-muted); font-size: 15px;">
                 Profesional di bidang operasional dan logistik dengan pengalaman <strong style="color: #fff;">2+ tahun</strong> memimpin tim di perusahaan supply chain terkemuka. Memiliki keahlian mendalam dalam manajemen gudang (inbound/outbound), kontrol inventaris via Stock Opname berkala, serta analisis varians stok tingkat lanjut menggunakan <strong style="color: var(--accent-cyan);">Excel & Google Sheets Analytics (QUERY, ARRAYFORMULA, XLOOKUP, & Power Query)</strong>. Seorang pemimpin yang adaptif dan berorientasi pada ketepatan SLA serta akurasi inventaris tinggi untuk mengoptimalkan efisiensi rantai pasok.
@@ -321,7 +451,7 @@
         </div>
 
         <!-- KEAHLIAN UTAMA -->
-        <div class="section-title">Core Competencies & Tech Stack</div>
+        <div class="section-title" id="keahlian">Core Competencies & Tech Stack</div>
         <div class="grid-skills">
             <div class="skill-card">Warehouse Operations <span class="skill-level">EXPERT</span></div>
             <div class="skill-card">Stock Opname & Inventory <span class="skill-level">EXPERT</span></div>
@@ -332,7 +462,7 @@
         </div>
 
         <!-- PENGALAMAN KERJA -->
-        <div class="section-title">Work Experience</div>
+        <div class="section-title" id="pengalaman">Work Experience</div>
         <div class="timeline">
             
             <div class="timeline-item">
@@ -391,7 +521,7 @@
         </div>
 
         <!-- PENDIDIKAN & SERTIFIKASI -->
-        <div class="section-title">Education & Certification</div>
+        <div class="section-title" id="pendidikan">Education & Certification</div>
         <div class="grid-skills">
             <div class="skill-card" style="display: block;">
                 <div style="color: var(--accent-cyan); font-size: 12px; font-family: 'Fira Code', monospace;">SERTIFIKASI • JUNI 2024</div>
@@ -426,6 +556,7 @@
         const typewriterElement = document.getElementById("typewriter");
         const loader = document.getElementById("loader");
         const mainContent = document.getElementById("main-content");
+        const navbar = document.getElementById("navbar");
 
         function typeWriter() {
             if (lineIndex < textToType.length) {
@@ -440,10 +571,11 @@
                     setTimeout(typeWriter, 300); // Jeda antar baris
                 }
             } else {
-                // Selesai mengetik, hilangkan loader dan munculkan web
+                // Selesai mengetik, hilangkan loader dan munculkan web + navbar
                 setTimeout(() => {
                     loader.style.opacity = "0";
                     loader.style.visibility = "hidden";
+                    navbar.style.display = "flex";
                     mainContent.classList.add("visible");
                 }, 600);
             }
