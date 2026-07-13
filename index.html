@@ -1,115 +1,389 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aidil Akbar Ramadhani | Portfolio</title>
+
+    <title>Aidil Akbar Ramadhani | Warehouse Team Leader</title>
+
+    <meta name="description"
+        content="Portfolio Aidil Akbar Ramadhani - Warehouse Team Leader | Supply Chain | Inventory Management | Data Analytics">
+
+    <meta name="keywords"
+        content="Warehouse, Supply Chain, Team Leader, Inventory, Excel, Google Sheets, Looker Studio">
+
+    <meta name="author" content="Aidil Akbar Ramadhani">
+
+    <link rel="icon" href="assets/icons/favicon.ico">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-main: #0a0f1d; --bg-card: #111827; --accent-cyan: #38bdf8;
-            --accent-blue: #0284c7; --accent-emerald: #10b981; --text-main: #f8fafc;
-            --text-muted: #94a3b8; --border-color: #1e293b;
-        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Loader & Main Content */
-        #loader { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #050811; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'Fira Code', monospace; transition: opacity 0.8s ease-in-out; }
-        #main-content { opacity: 0; transition: opacity 1s ease; max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; }
-        #main-content.visible { opacity: 1; }
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 
-        .hero { text-align: center; padding: 20px 0 30px; }
-        h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subtitle { font-size: 18px; color: var(--accent-cyan); font-weight: 600; margin-bottom: 25px; }
-
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; border: 1px solid var(--border-color); color: var(--text-main); cursor: pointer; }
-        .btn:hover { border-color: var(--text-main); transform: translateY(-2px); }
-
-        .tab-nav-container { display: flex; justify-content: center; margin-bottom: 35px; }
-        .tab-nav { display: inline-flex; gap: 8px; background: #0d1424; padding: 8px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.08); }
-        .tab-btn { background: transparent; color: var(--text-muted); border: 1px solid transparent; padding: 12px 22px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .tab-btn.active { background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%); color: #ffffff; font-weight: 700; }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .timeline-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
-        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-        .company-logo { width: 45px; height: 45px; border-radius: 8px; background: #ffffff; padding: 5px; object-fit: contain; }
-        .job-title { font-size: 18px; font-weight: 700; color: #ffffff; }
-        .company-name { font-size: 14px; color: var(--accent-cyan); font-weight: 600; }
-        
-        .cert-btn { margin-top: 10px; display: inline-block; color: var(--accent-emerald); font-size: 13px; text-decoration: none; border: 1px solid var(--accent-emerald); padding: 5px 10px; border-radius: 6px; }
-        footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--text-muted); }
-    </style>
 </head>
+
 <body>
-    <div id="loader"><div class="terminal-text" id="typewriter"></div></div>
-    <div id="main-content">
-        <header class="hero">
-            <h1>AIDIL AKBAR RAMADHANI</h1>
-            <div class="subtitle">Supply Chain & Warehouse Team Leader</div>
-            <div class="action-buttons">
-                <a href="https://wa.me/6285117211551" class="btn">💬 Chat WhatsApp</a>
-                <button onclick="window.print()" class="btn">🖨️ Cetak PDF</button>
-            </div>
-        </header>
 
-        <div class="tab-nav-container">
-            <div class="tab-nav">
-                <button class="tab-btn active" onclick="openTab(event, 'profil')">👨‍💻 Profil</button>
-                <button class="tab-btn" onclick="openTab(event, 'pengalaman')">💼 Pengalaman</button>
-                <button class="tab-btn" onclick="openTab(event, 'pendidikan')">🎓 Pendidikan</button>
+    <!-- ================= LOADER ================= -->
+
+    <div id="loader">
+
+        <div class="loader-box">
+
+            <span class="loader-title">Initializing Portfolio...</span>
+
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
             </div>
+
         </div>
 
-        <div id="profil" class="tab-content active">
-            <div class="timeline-item"><p>Profesional logistik dengan 2+ tahun pengalaman dalam manajemen operasional gudang, analisis data (QUERY, Power Query), dan kepemimpinan tim.</p></div>
-        </div>
-
-        <div id="pengalaman" class="tab-content">
-            <div class="timeline-item">
-                <div class="company-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Sunpride_Logo.png" class="company-logo" alt="Sunpride">
-                    <div><div class="job-title">Team Leader</div><div class="company-name">PT. Sewu Segar Nusantara (Sunpride)</div></div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="company-header">
-                    <img src="https://kula.id/assets/logo/logo-kula.png" class="company-logo" alt="Kula">
-                    <div><div class="job-title">Team Leader</div><div class="company-name">PT. Kula Untuk Semua (KulaSwalayan)</div></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="pendidikan" class="tab-content">
-            <div class="timeline-item">
-                <div class="job-title">SMA Negeri 3 Kota Tangerang</div>
-                <a href="https://sman3tangerang.com/" target="_blank" style="color:var(--accent-cyan)">📍 Lihat Lokasi Sekolah</a>
-            </div>
-            <div class="timeline-item">
-                <div class="job-title">Sertifikasi: Mengelola Excel</div>
-                <a href="https://drive.google.com/file/d/1mq15wVzt02LSIlV2pwPVaho-5fFjq-yj/view?usp=sharing" target="_blank" class="cert-btn">📄 View Certificate</a>
-            </div>
-        </div>
-
-        <footer><p>Aidil Akbar Ramadhani © 2026</p></footer>
     </div>
 
-    <script>
-        function openTab(evt, tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-        window.onload = () => { setTimeout(() => { document.getElementById('loader').style.display='none'; document.getElementById('main-content').classList.add('visible'); }, 2000); }
-    </script>
+    <!-- ================= BACKGROUND ================= -->
+
+    <div class="background-grid"></div>
+
+    <div class="background-glow glow-left"></div>
+
+    <div class="background-glow glow-right"></div>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar container">
+
+            <a href="#" class="logo">
+                Aidil<span>.</span>
+            </a>
+
+            <ul class="nav-menu">
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#experience">Experience</a></li>
+
+                <li><a href="#projects">Projects</a></li>
+
+                <li><a href="#skills">Skills</a></li>
+
+                <li><a href="#certificates">Certificates</a></li>
+
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+            <button class="menu-button">
+
+                ☰
+
+            </button>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero container">
+
+            <div class="hero-left">
+
+                <span class="hero-tag">
+
+                    Warehouse • Supply Chain • Analytics
+
+                </span>
+
+                <h1>
+
+                    Hi, I'm
+
+                    <span>Aidil Akbar Ramadhani</span>
+
+                </h1>
+
+                <h2>
+
+                    Warehouse Team Leader
+
+                </h2>
+
+                <p>
+
+                    Experienced in warehouse operations, inventory management,
+                    stock analysis, team leadership,
+                    Excel automation,
+                    Google Sheets,
+                    Power Query,
+                    and Looker Studio.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#contact" class="btn-primary">
+
+                        Contact Me
+
+                    </a>
+
+                    <a href="assets/pdf/CV-Aidil.pdf"
+
+                        class="btn-secondary"
+
+                        target="_blank">
+
+                        Download CV
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hero-right">
+
+                <div class="stats-card">
+
+                    <h3>2+</h3>
+
+                    <span>Years Experience</span>
+
+                </div>
+
+                <div class="stats-card">
+
+                    <h3>4+</h3>
+
+                    <span>Companies</span>
+
+                </div>
+
+                <div class="stats-card">
+
+                    <h3>Warehouse</h3>
+
+                    <span>Operations</span>
+
+                </div>
+
+                <div class="stats-card">
+
+                    <h3>Analytics</h3>
+
+                    <span>Excel • Sheets</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about" class="section container">
+
+            <div class="section-title">
+
+                <span>ABOUT</span>
+
+                <h2>Who I Am</h2>
+
+            </div>
+
+            <div class="about-card">
+
+                <p>
+
+                    I am a Warehouse Team Leader with experience managing
+                    warehouse operations,
+                    inventory control,
+                    stock opname,
+                    inbound & outbound logistics,
+                    SLA monitoring,
+                    and operational reporting.
+
+                </p>
+
+                <p>
+
+                    I enjoy improving warehouse efficiency using
+                    Excel,
+                    Google Sheets,
+                    Power Query,
+                    and Looker Studio dashboards.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ================= EXPERIENCE ================= -->
+
+        <section id="experience" class="section container">
+
+            <div class="section-title">
+
+                <span>CAREER</span>
+
+                <h2>Work Experience</h2>
+
+            </div>
+
+            <div id="experience-list">
+
+                <!-- Akan kita isi pada tahap berikutnya -->
+
+            </div>
+
+        </section>
+
+        <!-- ================= PROJECTS ================= -->
+
+        <section id="projects" class="section container">
+
+            <div class="section-title">
+
+                <span>PROJECTS</span>
+
+                <h2>Portfolio</h2>
+
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- Dashboard Looker Studio -->
+
+            </div>
+
+        </section>
+
+        <!-- ================= SKILLS ================= -->
+
+        <section id="skills" class="section container">
+
+            <div class="section-title">
+
+                <span>SKILLS</span>
+
+                <h2>Technical Skills</h2>
+
+            </div>
+
+            <div class="skills-grid">
+
+                <!-- Skill Card -->
+
+            </div>
+
+        </section>
+
+        <!-- ================= CERTIFICATES ================= -->
+
+        <section id="certificates" class="section container">
+
+            <div class="section-title">
+
+                <span>CERTIFICATES</span>
+
+                <h2>Education & Certification</h2>
+
+            </div>
+
+            <div class="certificate-grid">
+
+            </div>
+
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+
+        <section id="contact" class="section container">
+
+            <div class="section-title">
+
+                <span>CONTACT</span>
+
+                <h2>Let's Connect</h2>
+
+            </div>
+
+            <div class="contact-grid">
+
+                <a href="https://wa.me/6285117211551">
+
+                    WhatsApp
+
+                </a>
+
+                <a href="mailto:aidilakbarramadhani12@gmail.com">
+
+                    Email
+
+                </a>
+
+                <a href="#">
+
+                    LinkedIn (Coming Soon)
+
+                </a>
+
+                <span>
+
+                    Tangerang, Indonesia
+
+                </span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <h3>
+
+                Aidil Akbar Ramadhani
+
+            </h3>
+
+            <p>
+
+                Warehouse Team Leader • Supply Chain • Data Analytics
+
+            </p>
+
+            <small>
+
+                © 2026 All Rights Reserved.
+
+            </small>
+
+        </div>
+
+    </footer>
+
+    <!-- JS -->
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
