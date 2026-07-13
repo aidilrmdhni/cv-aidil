@@ -4,591 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aidil Akbar Ramadhani | Portfolio</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-main: #0a0f1d;
-            --bg-card: #111827;
-            --accent-cyan: #38bdf8;
-            --accent-blue: #0284c7;
-            --accent-emerald: #10b981;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #1e293b;
+            --bg-main: #0a0f1d; --bg-card: #111827; --accent-cyan: #38bdf8;
+            --accent-blue: #0284c7; --accent-emerald: #10b981; --text-main: #f8fafc;
+            --text-muted: #94a3b8; --border-color: #1e293b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        /* Loader & Main Content */
+        #loader { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #050811; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'Fira Code', monospace; transition: opacity 0.8s ease-in-out; }
+        #main-content { opacity: 0; transition: opacity 1s ease; max-width: 950px; margin: 0 auto; padding: 40px 20px 80px; }
+        #main-content.visible { opacity: 1; }
 
-        /* --- 1. ANIMASI LOADING SCREEN --- */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #050811;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Fira Code', monospace;
-            padding: 20px;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s;
-        }
-
-        .terminal-box {
-            width: 100%;
-            max-width: 500px;
-            background: #0e1626;
-            border: 1px solid var(--accent-cyan);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
-        }
-
-        .terminal-header {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #f59e0b; }
-        .dot-green { background: #10b981; }
-
-        .terminal-text { color: var(--accent-emerald); font-size: 14px; }
-        .cursor {
-            display: inline-block; width: 8px; height: 15px;
-            background: var(--accent-cyan); animation: blink 0.8s infinite;
-            vertical-align: middle;
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        /* --- 2. MAIN CONTENT --- */
-        #main-content {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 40px 20px 80px;
-        }
-        #main-content.visible { opacity: 1; transform: translateY(0); }
-
-        /* --- HERO SECTION --- */
         .hero { text-align: center; padding: 20px 0 30px; }
-        h1 {
-            font-size: clamp(30px, 5vw, 46px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            font-size: 18px; color: var(--accent-cyan);
-            font-weight: 600; margin-bottom: 25px;
-        }
+        h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-size: 18px; color: var(--accent-cyan); font-weight: 600; margin-bottom: 25px; }
 
-        .action-buttons {
-            display: flex; justify-content: center;
-            gap: 12px; flex-wrap: wrap; margin-bottom: 25px;
-        }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 20px; border-radius: 8px;
-            font-size: 13px; font-weight: 700; text-decoration: none;
-            transition: all 0.3s ease; cursor: pointer; border: none;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .btn-wa {
-            background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-        }
-        .btn-wa:hover {
-            background: var(--accent-emerald); color: #ffffff;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); transform: translateY(-2px);
-        }
-        .btn-email {
-            background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-        }
-        .btn-email:hover {
-            background: var(--accent-cyan); color: #000000;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); transform: translateY(-2px);
-        }
-        .btn-pdf {
-            background: var(--bg-card); color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-        .btn-pdf:hover { border-color: var(--text-main); transform: translateY(-2px); }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; border: 1px solid var(--border-color); color: var(--text-main); cursor: pointer; }
+        .btn:hover { border-color: var(--text-main); transform: translateY(-2px); }
 
-        .contact-bar {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 15px; font-size: 13px; color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-        .contact-bar span {
-            background: var(--bg-card); padding: 6px 14px;
-            border-radius: 6px; border: 1px solid var(--border-color);
-        }
+        .tab-nav-container { display: flex; justify-content: center; margin-bottom: 35px; }
+        .tab-nav { display: inline-flex; gap: 8px; background: #0d1424; padding: 8px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .tab-btn { background: transparent; color: var(--text-muted); border: 1px solid transparent; padding: 12px 22px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .tab-btn.active { background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%); color: #ffffff; font-weight: 700; }
 
-        /* --- 3. DESAIN NAVIGASI TAB BARU (MODERN PILL STYLE) --- */
-        .tab-nav-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 35px;
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .tab-nav {
-            display: inline-flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            background: #0d1424;
-            padding: 8px;
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .tab-btn {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid transparent;
-            padding: 12px 22px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tab-btn:hover:not(.active) {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
-            color: #ffffff;
-            font-weight: 700;
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 6px 20px -4px rgba(56, 189, 248, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .tab-icon {
-            font-size: 16px;
-        }
-
-        /* --- 4. TAB CONTENTS (PANELS) --- */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); scale: 0.98; }
-            to { opacity: 1; transform: translateY(0); scale: 1; }
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-        .section-title::before {
-            content: "/>"; font-family: 'Fira Code', monospace; color: var(--accent-emerald);
-        }
-
-        /* --- GRID KEAHLIAN --- */
-        .grid-skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 16px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            transition: all 0.3s ease;
-            cursor: default; /* Kursor standar agar terlihat profesional */
-            user-select: none; /* Mencegah blok biru tak sengaja saat diklik */
-        }
-
-        .skill-card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -10px rgba(56, 189, 248, 0.3);
-        }
-
-        .skill-name { flex: 1; line-height: 1.3; }
-        .skill-level {
-            font-family: 'Fira Code', monospace; font-size: 11px;
-            color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1);
-            padding: 4px 8px; border-radius: 4px; white-space: nowrap;
-        }
-
-        /* --- TIMELINE --- */
-        .timeline {
-            position: relative; border-left: 2px solid var(--border-color);
-            margin-left: 10px; padding-left: 25px;
-        }
-        .timeline-item {
-            position: relative; margin-bottom: 25px; background: var(--bg-card);
-            border: 1px solid var(--border-color); border-radius: 12px;
-            padding: 25px; transition: all 0.3s ease;
-            cursor: default;
-        }
-        .timeline-item:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
-        }
-        .timeline-item::before {
-            content: ""; position: absolute; left: -32px; top: 28px;
-            width: 12px; height: 12px; border-radius: 50%;
-            background: var(--accent-cyan); border: 3px solid var(--bg-main);
-        }
+        .timeline-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+        .company-logo { width: 45px; height: 45px; border-radius: 8px; background: #ffffff; padding: 5px; object-fit: contain; }
         .job-title { font-size: 18px; font-weight: 700; color: #ffffff; }
-        .company-name { font-size: 14px; color: var(--accent-cyan); font-weight: 600; margin-bottom: 5px; }
-        .date-badge {
-            display: inline-block; font-family: 'Fira Code', monospace;
-            font-size: 12px; color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.05); padding: 4px 10px;
-            border-radius: 6px; margin-bottom: 15px;
-        }
-        .job-desc { font-size: 14px; color: var(--text-muted); padding-left: 15px; }
-        .job-desc li { margin-bottom: 8px; }
-
-        footer {
-            text-align: center; margin-top: 60px; padding-top: 20px;
-            border-top: 1px solid var(--border-color); font-size: 13px;
-            color: var(--text-muted); font-family: 'Fira Code', monospace;
-        }
-
-        /* --- 5. OPTIMASI TAMPILAN DI LAYAR HP (MOBILE LAYOUT) --- */
-        @media screen and (max-width: 480px) {
-            .tab-btn {
-                padding: 10px 14px;
-                font-size: 13px;
-                gap: 6px;
-            }
-            .action-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0 20px;
-            }
-            .btn {
-                justify-content: center;
-            }
-        }
-
-        /* --- 6. PERBAIKAN BUG FITUR CETAK PDF (@MEDIA PRINT) --- */
-        @media print {
-            #loader, .tab-nav-container, .action-buttons { 
-                display: none !important; 
-            }
-            .tab-content { 
-                display: block !important; 
-                margin-bottom: 30px; 
-                animation: none !important;
-            }
-            body { 
-                background: #ffffff !important; 
-                color: #000000 !important; 
-            }
-            .skill-card, .timeline-item { 
-                border: 1px solid #ccc !important; 
-                box-shadow: none !important;
-                page-break-inside: avoid; 
-            }
-            h1, .section-title {
-                color: #000000 !important;
-                -webkit-text-fill-color: initial !important;
-            }
-        }
+        .company-name { font-size: 14px; color: var(--accent-cyan); font-weight: 600; }
+        
+        .cert-btn { margin-top: 10px; display: inline-block; color: var(--accent-emerald); font-size: 13px; text-decoration: none; border: 1px solid var(--accent-emerald); padding: 5px 10px; border-radius: 6px; }
+        footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--text-muted); }
     </style>
 </head>
 <body>
-
-    <!-- 1. ANIMASI TERMINAL BOOT -->
-    <div id="loader">
-        <div class="terminal-box">
-            <div class="terminal-header">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-            </div>
-            <div class="terminal-text" id="typewriter"></div><span class="cursor"></span>
-        </div>
-    </div>
-
-    <!-- 2. KONTEN UTAMA CV -->
+    <div id="loader"><div class="terminal-text" id="typewriter"></div></div>
     <div id="main-content">
         <header class="hero">
             <h1>AIDIL AKBAR RAMADHANI</h1>
             <div class="subtitle">Supply Chain & Warehouse Team Leader</div>
-            
             <div class="action-buttons">
-                <a href="https://wa.me/6285117211551" target="_blank" class="btn btn-wa">💬 Chat WhatsApp</a>
-                <a href="mailto:aidilakbarramadhani12@gmail.com" class="btn btn-email">📧 Kirim Email</a>
-                <button onclick="window.print()" class="btn btn-pdf">🖨️ Simpan PDF / Cetak</button>
-            </div>
-
-            <div class="contact-bar">
-                <span>📍 Kota Tangerang, Banten</span>
-                <span>📱 0851-1721-1551</span>
-                <span>📧 aidilakbarramadhani12@gmail.com</span>
+                <a href="https://wa.me/6285117211551" class="btn">💬 Chat WhatsApp</a>
+                <button onclick="window.print()" class="btn">🖨️ Cetak PDF</button>
             </div>
         </header>
 
-        <!-- 3. MENU NAVIGASI TAB BARU (PILL SHAPED + ICONS + GLOW) -->
         <div class="tab-nav-container">
             <div class="tab-nav">
-                <button class="tab-btn active" onclick="openTab(event, 'profil')">
-                    <span class="tab-icon">👨‍💻</span> Profil
-                </button>
-                <button class="tab-btn" onclick="openTab(event, 'keahlian')">
-                    <span class="tab-icon">⚡</span> Keahlian
-                </button>
-                <button class="tab-btn" onclick="openTab(event, 'pengalaman')">
-                    <span class="tab-icon">💼</span> Pengalaman
-                </button>
-                <button class="tab-btn" onclick="openTab(event, 'pendidikan')">
-                    <span class="tab-icon">🎓</span> Pendidikan
-                </button>
+                <button class="tab-btn active" onclick="openTab(event, 'profil')">👨‍💻 Profil</button>
+                <button class="tab-btn" onclick="openTab(event, 'pengalaman')">💼 Pengalaman</button>
+                <button class="tab-btn" onclick="openTab(event, 'pendidikan')">🎓 Pendidikan</button>
             </div>
         </div>
 
-        <!-- 4. PANEL KONTEN -->
-        
-        <!-- PANEL PROFIL -->
         <div id="profil" class="tab-content active">
-            <div class="section-title">Executive Summary</div>
-            <div class="timeline-item" style="border-left: 4px solid var(--accent-emerald); margin-bottom: 0;">
-                <p style="color: var(--text-muted); font-size: 15px;">
-                    Profesional di bidang operasional dan logistik dengan pengalaman <strong style="color: #fff;">2+ tahun</strong> memimpin tim di perusahaan supply chain terkemuka. Memiliki keahlian mendalam dalam manajemen gudang (inbound/outbound), kontrol inventaris via Stock Opname berkala, serta analisis varians stok tingkat lanjut menggunakan <strong style="color: var(--accent-cyan);">Excel & Google Sheets Analytics (QUERY, ARRAYFORMULA, XLOOKUP, & Power Query)</strong>. Seorang pemimpin yang adaptif dan berorientasi pada ketepatan SLA serta akurasi inventaris tinggi untuk mengoptimalkan efisiensi rantai pasok.
-                </p>
-            </div>
+            <div class="timeline-item"><p>Profesional logistik dengan 2+ tahun pengalaman dalam manajemen operasional gudang, analisis data (QUERY, Power Query), dan kepemimpinan tim.</p></div>
         </div>
 
-        <!-- PANEL KEAHLIAN -->
-        <div id="keahlian" class="tab-content">
-            <div class="section-title">Core Competencies & Tech Stack</div>
-            <div class="grid-skills">
-                <div class="skill-card">
-                    <span class="skill-name">Warehouse Operations</span>
-                    <span class="skill-level">EXPERT</span>
-                </div>
-                <div class="skill-card">
-                    <span class="skill-name">Stock Opname & Inventory</span>
-                    <span class="skill-level">EXPERT</span>
-                </div>
-                <div class="skill-card">
-                    <span class="skill-name">Sheets (QUERY/ArrayFormula)</span>
-                    <span class="skill-level">EXPERT</span>
-                </div>
-                <div class="skill-card">
-                    <span class="skill-name">Excel (Power Query/XLOOKUP)</span>
-                    <span class="skill-level">EXPERT</span>
-                </div>
-                <div class="skill-card">
-                    <span class="skill-name">Team Leadership</span>
-                    <span class="skill-level">EXPERT</span>
-                </div>
-                <div class="skill-card">
-                    <span class="skill-name">Fulfillment Center Operations</span>
-                    <span class="skill-level">ADVANCED</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- PANEL PENGALAMAN -->
         <div id="pengalaman" class="tab-content">
-            <div class="section-title">Work Experience</div>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <div class="job-title">Team Leader (Pegawai Kontrak)</div>
-                    <div class="company-name">PT. Sewu Segar Nusantara (Sunpride) — Kota Tangerang</div>
-                    <div class="date-badge">Maret 2026 – Sekarang</div>
-                    <ul class="job-desc">
-                        <li>Memimpin dan memotivasi tim operasional harian dalam proses distribusi buah segar sesuai standar baku mutu perusahaan.</li>
-                        <li>Mengkoordinasikan alur manajemen inbound dan outbound, mengontrol sistem cold storage, dan menjaga SLA pengiriman.</li>
-                        <li>Menganalisis pergerakan dan varians stok harian berbasis spreadsheet serta berkolaborasi untuk pencegahan pembusukan produk (waste mitigation).</li>
-                    </ul>
+            <div class="timeline-item">
+                <div class="company-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Sunpride_Logo.png" class="company-logo" alt="Sunpride">
+                    <div><div class="job-title">Team Leader</div><div class="company-name">PT. Sewu Segar Nusantara (Sunpride)</div></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="job-title">Team Leader (Pegawai Kontrak)</div>
-                    <div class="company-name">PT. Kula Untuk Semua — Kota Jakarta Utara</div>
-                    <div class="date-badge">November 2024 – Maret 2026</div>
-                    <ul class="job-desc">
-                        <li>Mengelola seluruh siklus operasional fulfillment center (inbound, put-away, picking, hingga packing).</li>
-                        <li>Memimpin pelaksanaan Stock Opname parsial dan menyeluruh secara berkala guna menjaga akurasi inventaris di atas batas toleransi.</li>
-                        <li>Mengevaluasi metrik produktivitas tim operasional dan menyusun laporan performa analitis kepada Warehouse Manager.</li>
-                    </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="company-header">
+                    <img src="https://kula.id/assets/logo/logo-kula.png" class="company-logo" alt="Kula">
+                    <div><div class="job-title">Team Leader</div><div class="company-name">PT. Kula Untuk Semua (KulaSwalayan)</div></div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="job-title">Team Leader (Pegawai Kontrak)</div>
-                    <div class="company-name">PT. Sayur Untuk Semua (SEGARI TGX) — Kota Tangerang</div>
-                    <div class="date-badge">September 2023 – November 2024</div>
-                    <ul class="job-desc">
-                        <li>Mengarahkan operasional gudang harian untuk memastikan seluruh proses selesai tepat waktu sesuai jendela pengiriman (delivery window) subuh.</li>
-                        <li>Mengkoordinasikan Stock Opname terjadwal, menginvestigasi akar masalah pada selisih (gap) stok, dan rekonsiliasi data inventaris.</li>
-                        <li>Menyusun laporan efisiensi operasional gudang dan pembaruan performa tim secara analitik kepada jajaran manajemen senior.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="job-title">Cashier (Pegawai Kontrak)</div>
-                    <div class="company-name">Apin Salon — Kota Tangerang</div>
-                    <div class="date-badge">Juli 2023 – September 2023</div>
-                    <ul class="job-desc">
-                        <li>Mengelola transaksi pembayaran pelanggan dan pencatatan arus kas harian secara teliti dan akurat.</li>
-                        <li>Memberikan edukasi terkait detail perawatan salon serta aktif melakukan up-selling produk perawatan rambut.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="job-title">Sales Promotion Boy (Magang)</div>
-                    <div class="company-name">PT. Carvil Abadi (Carvil KS9 Dewantoro) — Kota Tangerang</div>
-                    <div class="date-badge">Maret 2023 – Juli 2023</div>
-                    <ul class="job-desc">
-                        <li>Membangun komunikasi persuasif dengan pelanggan untuk mempresentasikan keunggulan produk ritel demi mencapai target penjualan.</li>
-                        <li>Mengelola penataan display produk (Visual Merchandising) serta melakukan pengecekan ketersediaan stok display harian.</li>
-                    </ul>
-                </div>
-
             </div>
         </div>
 
-        <!-- PANEL PENDIDIKAN & SERTIFIKASI -->
         <div id="pendidikan" class="tab-content">
-            <div class="section-title">Education & Certification</div>
-            <div class="grid-skills">
-                <div class="skill-card" style="display: block;">
-                    <div style="color: var(--accent-cyan); font-size: 12px; font-family: 'Fira Code', monospace; margin-bottom: 6px;">SERTIFIKASI • JUNI 2024</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px;">Mengelola Excel Bagi Petugas Entri Data</div>
-                    <div style="font-size: 13px; color: var(--text-muted); font-weight: 400;">LKP Putra Perwira (No. 10277525)</div>
-                </div>
-                <div class="skill-card" style="display: block;">
-                    <div style="color: var(--accent-cyan); font-size: 12px; font-family: 'Fira Code', monospace; margin-bottom: 6px;">PENDIDIKAN • 2020 – 2023</div>
-                    <div style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px;">SMA Negeri 3 Kota Tangerang</div>
-                    <div style="font-size: 13px; color: var(--text-muted); font-weight: 400;">Jurusan Ilmu Pengetahuan Sosial (IPS)</div>
-                </div>
+            <div class="timeline-item">
+                <div class="job-title">SMA Negeri 3 Kota Tangerang</div>
+                <a href="https://sman3tangerang.com/" target="_blank" style="color:var(--accent-cyan)">📍 Lihat Lokasi Sekolah</a>
+            </div>
+            <div class="timeline-item">
+                <div class="job-title">Sertifikasi: Mengelola Excel</div>
+                <a href="https://drive.google.com/file/d/1mq15wVzt02LSIlV2pwPVaho-5fFjq-yj/view?usp=sharing" target="_blank" class="cert-btn">📄 View Certificate</a>
             </div>
         </div>
 
-        <footer>
-            <p>Aidil Akbar Ramadhani</p>
-            <p style="margin-top: 5px; font-size: 11px; opacity: 0.5;">> System.exit(0)</p>
-        </footer>
+        <footer><p>Aidil Akbar Ramadhani © 2026</p></footer>
     </div>
 
-    <!-- 5. SCRIPT ANIMASI -->
     <script>
-        const textToType = [
-            "> System.init()... OK",
-            "> Loading User Profile... [Aidil Akbar Ramadhani]",
-            "> Fetching experience & skills... 100%",
-            "> Launching portfolio interface..."
-        ];
-
-        let lineIndex = 0;
-        let charIndex = 0;
-        const speed = 35;
-        const typewriterElement = document.getElementById("typewriter");
-        const loader = document.getElementById("loader");
-        const mainContent = document.getElementById("main-content");
-
-        function typeWriter() {
-            if (lineIndex < textToType.length) {
-                if (charIndex < textToType[lineIndex].length) {
-                    typewriterElement.innerHTML += textToType[lineIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, speed);
-                } else {
-                    typewriterElement.innerHTML += "<br>";
-                    lineIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriter, 300);
-                }
-            } else {
-                setTimeout(() => {
-                    loader.style.opacity = "0";
-                    loader.style.visibility = "hidden";
-                    mainContent.classList.add("visible");
-                }, 600);
-            }
-        }
-
-        // FUNGSI GANTI TAB KONTEN
         function openTab(evt, tabId) {
-            const contents = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < contents.length; i++) {
-                contents[i].classList.remove("active");
-            }
-            
-            const buttons = document.getElementsByClassName("tab-btn");
-            for (let i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
-            
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
-
-        window.onload = () => {
-            setTimeout(typeWriter, 500);
-        };
+        window.onload = () => { setTimeout(() => { document.getElementById('loader').style.display='none'; document.getElementById('main-content').classList.add('visible'); }, 2000); }
     </script>
 </body>
 </html>
