@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aidil Akbar Ramadhani | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0a0f1d;
+            --bg-card: #111827;
+            --accent-cyan: #38bdf8;
+            --accent-emerald: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 1. ANIMASI LOADING SCREEN (TERMINAL BOOT) --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #050811;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+        }
+
+        .terminal-box {
+            width: 100%;
+            max-width: 500px;
+            background: #0e1626;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .terminal-text {
+            color: var(--accent-emerald);
+            font-size: 14px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: var(--accent-cyan);
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- 2. STRUKTUR KONTEN UTAMA --- */
+        #main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .contact-bar span {
+            background: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- SECTION & CARDS --- */
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .section-title::before {
+            content: "/>";
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-emerald);
+        }
+
+        .grid-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px rgba(56, 189, 248, 0.3);
+        }
+
+        .skill-level {
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: var(--accent-emerald);
+        }
+
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--border-color);
+            margin-left: 10px;
+            padding-left: 25px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: 28px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            border: 3px solid var(--bg-main);
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .company-name {
+            font-size: 14px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .job-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            padding-left: 15px;
+        }
+
+        .job-desc li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 13px;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ANIMASI LOADING ALA PROGRAMMER -->
+    <div id="loader">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+            </div>
+            <div class="terminal-text" id="typewriter"></div><span class="cursor"></span>
+        </div>
+    </div>
+
+    <!-- 2. KONTEN UTAMA CV -->
+    <div id="main-content">
+        <header class="hero">
+            <div class="badge">⚡ Verified Professional</div>
+            <h1>AIDIL AKBAR RAMADHANI</h1>
+            <div class="subtitle">Supply Chain & Warehouse Team Leader</div>
+            
+            <div class="contact-bar">
+                <span>📍 Kota Tangerang, Banten</span>
+                <span>📱 0851-1721-1551</span>
+                <span>📧 aidilakbarramadhani12@gmail.com</span>
+            </div>
+        </header>
+
+        <!-- PROFIL -->
+        <div class="section-title">Executive Summary</div>
+        <div class="timeline-item" style="border-left: 4px solid var(--accent-emerald);">
+            <p style="color: var(--text-muted); font-size: 15px;">
+                Profesional di bidang operasional dan logistik dengan pengalaman <strong style="color: #fff;">2+ tahun</strong> memimpin tim di perusahaan supply chain terkemuka. Punya keahlian kuat dalam manajemen gudang (inbound/outbound), kontrol inventaris via Stock Opname berkala, serta analisis varians stok menggunakan <strong style="color: var(--accent-cyan);">Microsoft Excel (Advanced)</strong> dan Google Sheets. Berorientasi pada ketepatan SLA dan akurasi inventaris tinggi untuk mengoptimalkan efisiensi rantai pasok.
+            </p>
+        </div>
+
+        <!-- KEAHLIAN UTAMA -->
+        <div class="section-title">Core Competencies & Tech Stack</div>
+        <div class="grid-skills">
+            <div class="skill-card">Warehouse Operations <span class="skill-level">EXPERT</span></div>
+            <div class="skill-card">Stock Opname & Inventory <span class="skill-level">EXPERT</span></div>
+            <div class="skill-card">MS Excel (VLOOKUP/Pivot) <span class="skill-level">ADVANCED</span></div>
+            <div class="skill-card">Analisis Varians Stok <span class="skill-level">ADVANCED</span></div>
+            <div class="skill-card">Team Leadership <span class="skill-level">EXPERT</span></div>
+            <div class="skill-card">Fulfillment Center <span class="skill-level">ADVANCED</span></div>
+        </div>
+
+        <!-- PENGALAMAN KERJA -->
+        <div class="section-title">Work Experience</div>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="job-title">Team Leader (Pegawai Kontrak)</div>
+                <div class="company-name">PT. Sewu Segar Nusantara (Sunpride) — Kota Tangerang</div>
+                <div class="date-badge">Maret 2026 – Sekarang</div>
+                <ul class="job-desc">
+                    <li>Memimpin dan memotivasi tim operasional harian dalam proses distribusi buah segar sesuai standar baku mutu perusahaan.</li>
+                    <li>Mengkoordinasikan alur manajemen inbound dan outbound, mengontrol sistem cold storage, dan menjaga SLA pengiriman.</li>
+                    <li>Menganalisis pergerakan dan varians stok harian berbasis spreadsheet serta berkolaborasi untuk pencegahan pembusukan produk (waste mitigation).</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">Team Leader (Pegawai Kontrak)</div>
+                <div class="company-name">PT. Kula Untuk Semua — Kota Jakarta Utara</div>
+                <div class="date-badge">November 2024 – Maret 2026</div>
+                <ul class="job-desc">
+                    <li>Mengelola seluruh siklus operasional fulfillment center (inbound, put-away, picking, hingga packing).</li>
+                    <li>Memimpin pelaksanaan Stock Opname parsial dan menyeluruh secara berkala guna menjaga akurasi inventaris di atas batas toleransi.</li>
+                    <li>Mengevaluasi metrik produktivitas tim operasional dan menyusun laporan performa analitis kepada Warehouse Manager.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">Team Leader (Pegawai Kontrak)</div>
+                <div class="company-name">PT. Sayur Untuk Semua (SEGARI TGX) — Kota Tangerang</div>
+                <div class="date-badge">September 2023 – November 2024</div>
+                <ul class="job-desc">
+                    <li>Mengarahkan operasional gudang harian untuk memastikan seluruh proses selesai tepat waktu sesuai jendela pengiriman (delivery window) subuh.</li>
+                    <li>Mengkoordinasikan Stock Opname terjadwal, menginvestigasi akar masalah pada selisih (gap) stok, dan rekonsiliasi data inventaris.</li>
+                    <li>Menyusun laporan efisiensi operasional gudang dan pembaruan performa tim secara analitik kepada jajaran manajemen senior.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">Cashier (Pegawai Kontrak)</div>
+                <div class="company-name">Apin Salon — Kota Tangerang</div>
+                <div class="date-badge">Juli 2023 – September 2023</div>
+                <ul class="job-desc">
+                    <li>Mengelola transaksi pembayaran pelanggan dan pencatatan arus kas harian secara teliti dan akurat.</li>
+                    <li>Memberikan edukasi terkait detail perawatan salon serta aktif melakukan up-selling produk perawatan rambut.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">Sales Promotion Boy (Magang)</div>
+                <div class="company-name">PT. Carvil Abadi (Carvil KS9 Dewantoro) — Kota Tangerang</div>
+                <div class="date-badge">Maret 2023 – Juli 2023</div>
+                <ul class="job-desc">
+                    <li>Membangun komunikasi persuasif dengan pelanggan untuk mempresentasikan keunggulan produk ritel demi mencapai target penjualan.</li>
+                    <li>Mengelola penataan display produk (Visual Merchandising) serta melakukan pengecekan ketersediaan stok display harian.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- PENDIDIKAN & SERTIFIKASI -->
+        <div class="section-title">Education & Certification</div>
+        <div class="grid-skills">
+            <div class="skill-card" style="display: block;">
+                <div style="color: var(--accent-cyan); font-size: 12px; font-family: 'Fira Code', monospace;">SERTIFIKASI • JUNI 2024</div>
+                <div style="font-size: 15px; margin: 5px 0;">Mengelola Excel Bagi Petugas Entri Data</div>
+                <div style="font-size: 13px; color: var(--text-muted); font-weight: 400;">LKP Putra Perwira (No. 10277525)</div>
+            </div>
+            <div class="skill-card" style="display: block;">
+                <div style="color: var(--accent-cyan); font-size: 12px; font-family: 'Fira Code', monospace;">PENDIDIKAN • 2020 – 2023</div>
+                <div style="font-size: 15px; margin: 5px 0;">SMA Negeri 3 Kota Tangerang</div>
+                <div style="font-size: 13px; color: var(--text-muted); font-weight: 400;">Jurusan Ilmu Pengetahuan Sosial (IPS)</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Designed & Built for Aidil Akbar Ramadhani • Hosted on Vercel ⚡</p>
+            <p style="margin-top: 5px; font-size: 11px; opacity: 0.5;">> System.exit(0)</p>
+        </footer>
+    </div>
+
+    <!-- 3. SCRIPT ANIMASI TERMINAL BOOT & TRANSISI -->
+    <script>
+        const textToType = [
+            "> System.init()... OK",
+            "> Loading User Profile... [Aidil Akbar Ramadhani]",
+            "> Fetching experience & skills... 100%",
+            "> Launching portfolio interface..."
+        ];
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        const speed = 35; // Kecepatan ketik (ms)
+        const typewriterElement = document.getElementById("typewriter");
+        const loader = document.getElementById("loader");
+        const mainContent = document.getElementById("main-content");
+
+        function typeWriter() {
+            if (lineIndex < textToType.length) {
+                if (charIndex < textToType[lineIndex].length) {
+                    typewriterElement.innerHTML += textToType[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    typewriterElement.innerHTML += "<br>";
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 300); // Jeda antar baris
+                }
+            } else {
+                // Selesai mengetik, hilangkan loader dan munculkan web
+                setTimeout(() => {
+                    loader.style.opacity = "0";
+                    loader.style.visibility = "hidden";
+                    mainContent.classList.add("visible");
+                }, 600);
+            }
+        }
+
+        // Jalankan animasi saat halaman dibuka
+        window.onload = () => {
+            setTimeout(typeWriter, 500);
+        };
+    </script>
+</body>
+</html>
